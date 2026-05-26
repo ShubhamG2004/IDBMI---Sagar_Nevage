@@ -1,4 +1,4 @@
-# IDBMI React Inquiry App
+# IDEMI React Inquiry App
 
 React + Supabase replacement for the original PHP inquiry form project.
 

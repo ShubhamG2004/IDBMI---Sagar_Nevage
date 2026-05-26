@@ -7,7 +7,7 @@ headers = []
 [functions."*"]
 
 [build]
-publish = "D:\\PES\\Project\\idbmi\\dist"
+publish = "dist"
 publishOrigin = "config"
 commandOrigin = "config"
 command = "npm run build"

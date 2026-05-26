@@ -54,7 +54,7 @@ export default function LoginPage() {
     <main className="login-page">
       <div className="login-shell">
         <section className="login-hero" aria-hidden="true">
-          <div className="login-hero-badge">IDBMI</div>
+          <div className="login-hero-badge">IDEMI</div>
           <h1>Inquiry Management Portal</h1>
           <p>Access the student inquiry records, course catalog, and print-ready forms from one place.</p>
           <div className="login-hero-stats">

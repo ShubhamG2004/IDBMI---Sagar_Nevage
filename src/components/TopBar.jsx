@@ -15,7 +15,7 @@ export default function TopBar() {
     <header className="topbar no-print" role="banner">
       <div className="topbar-inner container">
         <div className="brand">
-          <Link to="/inquiries" className="brand-link">IDBMI Inquiry</Link>
+          <Link to="/dashboard" className="brand-link">IDEMI Inquiry</Link>
         </div>
 
         <button
@@ -28,6 +28,7 @@ export default function TopBar() {
         </button>
 
         <nav className={`topnav ${open ? 'open' : ''}`} role="navigation">
+          <Link to="/dashboard" onClick={() => setOpen(false)}>Home</Link>
           <Link to="/inquiries" onClick={() => setOpen(false)}>All Student</Link>
           <Link to="/inquiries/new" onClick={() => setOpen(false)}>New Form</Link>
           <Link to="/courses" onClick={() => setOpen(false)}>Courses</Link>

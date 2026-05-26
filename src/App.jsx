@@ -8,6 +8,8 @@ import PrintInquiryPage from './pages/PrintInquiryPage';
 import CoursesPage from './pages/CoursesPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import HomePage from './pages/HomePage';
+import DashboardPage from './pages/DashboardPage';
+import CourseInquiriesPage from './pages/CourseInquiriesPage';
 
 function ProtectedRoute({ session, children }) {
   if (session === undefined) return <div className="page-status">Loading...</div>;
@@ -30,7 +32,15 @@ export default function App() {
   return (
     <Routes>
       <Route path="/reset-password" element={<ResetPasswordPage session={session} />} />
-      <Route path="/login" element={session ? <Navigate to="/inquiries" replace /> : <LoginPage />} />
+      <Route path="/login" element={session ? <Navigate to="/dashboard" replace /> : <LoginPage />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute session={session}>
+            <DashboardPage />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/inquiries"
         element={
@@ -68,6 +78,14 @@ export default function App() {
         element={
           <ProtectedRoute session={session}>
             <CoursesPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/courses/:courseName/inquiries"
+        element={
+          <ProtectedRoute session={session}>
+            <CourseInquiriesPage />
           </ProtectedRoute>
         }
       />
