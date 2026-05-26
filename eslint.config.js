@@ -12,6 +12,8 @@ export default [
         window: 'readonly',
         document: 'readonly',
         FormData: 'readonly',
+        Blob: 'readonly',
+        URL: 'readonly',
         confirm: 'readonly',
         alert: 'readonly',
       },
