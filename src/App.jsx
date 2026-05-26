@@ -6,6 +6,8 @@ import InquiryFormPage from './pages/InquiryFormPage';
 import InquiryListPage from './pages/InquiryListPage';
 import PrintInquiryPage from './pages/PrintInquiryPage';
 import CoursesPage from './pages/CoursesPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
+import HomePage from './pages/HomePage';
 
 function ProtectedRoute({ session, children }) {
   if (session === undefined) return <div className="page-status">Loading...</div>;
@@ -27,6 +29,7 @@ export default function App() {
 
   return (
     <Routes>
+      <Route path="/reset-password" element={<ResetPasswordPage session={session} />} />
       <Route path="/login" element={session ? <Navigate to="/inquiries" replace /> : <LoginPage />} />
       <Route
         path="/inquiries"
@@ -68,7 +71,8 @@ export default function App() {
           </ProtectedRoute>
         }
       />
-      <Route path="*" element={<Navigate to="/inquiries" replace />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
