@@ -1,0 +1,254 @@
+body {
+  padding: 0;
+}
+
+.form-container {
+  width: 800px;
+  margin: 42px auto;
+  padding: 25px;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.form-header {
+  margin-left: 170px;
+}
+
+.document-details {
+  border: 1px solid #000;
+  font-size: 12px;
+  text-align: left;
+}
+
+.document-details p {
+  margin: 2px 0;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.enrollment-blocks {
+  display: flex;
+  gap: 5px;
+}
+
+.enrollment-block {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #000;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bold;
+}
+
+.no-border-bottom {
+  border-bottom: none !important;
+}
+
+.form-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  margin-top: -15px;
+}
+
+.confirm-checkbox {
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  margin-left: 150px;
+  margin-top: -20px;
+  background-color: white;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkmark {
+  font-size: 36px;
+  color: green;
+  line-height: 1;
+}
+
+.form-header {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.form-row-reverse {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.form-row-reverse .data {
+  margin-left: 10px;
+}
+
+.form-row-reverse label {
+  margin-left: 5px;
+  flex: 0 0 auto;
+}
+
+.form-section {
+  margin-bottom: 25px;
+}
+
+.form-row {
+  display: flex;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  align-items: center;
+}
+
+.form-row .data {
+  flex: 1;
+  padding: 5px;
+  border-bottom: 1px solid #000;
+  margin-top: 0;
+  min-height: 29px;
+}
+
+.form-row-left-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-row-left-right .form-row {
+  flex: 1;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.form-row-left-right .form-row:last-child {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.form-row-left-right label {
+  flex: 0 0 auto;
+  margin-right: 0;
+}
+
+.form-row-left-right .data {
+  flex: 1;
+  padding: 0;
+  border-bottom: 1px solid #000;
+}
+
+.signature {
+  text-align: right;
+  margin-top: 40px;
+}
+
+.signature label {
+  margin-right: 20px;
+}
+
+.c-signature {
+  margin-top: 25px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+th,
+td {
+  padding: 5px;
+  text-align: left;
+}
+
+h3 {
+  font-size: 22px;
+  margin: 0;
+}
+
+hr {
+  margin: 20px 0;
+}
+
+.course-fees-data {
+  flex: 1;
+}
+
+.print-page {
+  padding: 10px 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: inline-block;
+  margin-left: 250px;
+  margin-top: 20px;
+}
+
+.dis-page {
+  padding: 10px 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: inline-block;
+  margin-left: 30px;
+}
+
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+    font-size: 12pt;
+    background: #fff;
+  }
+
+  .form-container {
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .print-page,
+  .dis-page,
+  .no-print {
+    display: none;
+  }
+
+  .confirm-checkbox {
+    margin-right: -10px;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: 110px;
+    margin-top: -20px;
+    background-color: white;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
