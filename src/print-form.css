@@ -2,6 +2,15 @@ body {
   padding: 0;
 }
 
+/* Ensure print output targets A4 paper with consistent margins */
+@page {
+  size: A4;
+  margin: 10mm;
+}
+
+html, body {
+  -webkit-print-color-adjust: exact;
+}
 .form-container {
   width: 800px;
   margin: 42px auto;
@@ -183,6 +192,9 @@ hr {
 
 .course-fees-data {
   flex: 1;
+  /* Nudge the course fees value to visually align with the adjacent column */
+  padding-left: 28px;
+  box-sizing: border-box;
 }
 
 .print-page {
@@ -224,12 +236,17 @@ hr {
     background: #fff;
   }
 
+  /* Force the form to render at exact A4 printable dimensions */
   .form-container {
-    width: 100%;
+    width: 210mm; /* A4 width */
+    min-height: 297mm; /* A4 height */
+    margin: 0 auto; /* center on the page */
+    padding: 10mm; /* match @page margin and leave inner padding */
     border: none;
     box-shadow: none;
-    margin: 0;
-    padding: 0;
+    box-sizing: border-box;
+    background: #fff;
+    page-break-inside: avoid;
   }
 
   .print-page,

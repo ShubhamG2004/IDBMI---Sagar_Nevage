@@ -33,7 +33,7 @@ export default function PrintInquiryPage() {
             <p>Document ID: TRG:FF:01</p>
             <p>Effective Date: 01/12/2016</p>
             <p>Revision Status: 00</p>
-          </div>S
+          </div>
         </div>
         <h3 style={{ textAlign: 'center', marginTop: -20 }}>INQUIRY FORM</h3>
         <hr />
