@@ -7,10 +7,13 @@ import { listInquiries } from '../lib/inquiries';
 export default function CoursesPage() {
   const [courses, setCourses] = useState([]);
   const [inquiries, setInquiries] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isAddOpen, setIsAddOpen] = useState(false);
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
   const [inquiriesLoading, setInquiriesLoading] = useState(false);
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
   const load = () => {
@@ -38,9 +41,12 @@ export default function CoursesPage() {
     const v = (name || '').trim();
     if (!v) return;
     setLoading(true);
+    setError('');
     try {
       await createCourse(v);
       setName('');
+      setIsAddOpen(false);
+      setSuccessMessage('Course added successfully.');
       load();
     } catch (e) {
       setError(e.message || 'Failed to add');
@@ -96,6 +102,24 @@ export default function CoursesPage() {
     return counts;
   }, [inquiries]);
 
+  const filteredCourses = useMemo(() => {
+    const term = searchTerm.trim().toLowerCase();
+    if (!term) return courses;
+    return courses.filter((course) => course.name.toLowerCase().includes(term));
+  }, [courses, searchTerm]);
+
+  const openAddCourse = () => {
+    setName('');
+    setError('');
+    setSuccessMessage('');
+    setIsAddOpen(true);
+  };
+
+  const closeAddCourse = () => {
+    setIsAddOpen(false);
+    setName('');
+  };
+
   return (
     <>
       <TopBar />
@@ -105,17 +129,28 @@ export default function CoursesPage() {
             <p>Course Dashboard</p>
             <h1>Manage Courses</h1>
           </div>
-          <form onSubmit={handleAdd} className="course-add-form">
-            <input value={name} onChange={(e) => setName(e.target.value)} placeholder="New course name" />
-            <button type="submit" className="add-course-button" disabled={loading}>{loading ? 'Adding...' : 'Add Course'}</button>
-          </form>
+          <div className="courses-header-controls">
+            <label className="course-search">
+              <span>Search courses</span>
+              <input
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search by course name"
+                type="search"
+              />
+            </label>
+            <button type="button" className="add-course-button add-course-trigger" onClick={openAddCourse}>
+              Add Courses
+            </button>
+          </div>
         </section>
 
         {error && <div className="page-error">{error}</div>}
+        {successMessage && <div className="page-status page-success">{successMessage}</div>}
 
         <section className="course-card-grid" aria-label="Courses">
-          {courses.length > 0 ? (
-            courses.map((c) => (
+          {filteredCourses.length > 0 ? (
+            filteredCourses.map((c) => (
               <article
                 className="course-tile"
                 key={c.id}
@@ -192,12 +227,61 @@ export default function CoursesPage() {
                 </div>
               </article>
             ))
+          ) : courses.length > 0 ? (
+            <div className="empty-card">No courses match your search.</div>
           ) : (
             <div className="empty-card">No courses found.</div>
           )}
         </section>
         {inquiriesLoading && <div className="page-status">Loading inquiry counts...</div>}
       </main>
+
+      {isAddOpen && (
+        <div className="course-modal-overlay" role="presentation" onClick={closeAddCourse}>
+          <div
+            className="course-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="add-course-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="course-modal-header">
+              <div>
+                <p>Add Course</p>
+                <h2 id="add-course-title">Create a new course</h2>
+              </div>
+              <button
+                type="button"
+                className="course-modal-close"
+                onClick={closeAddCourse}
+                aria-label="Close add course dialog"
+              >
+                ×
+              </button>
+            </div>
+
+            <form onSubmit={handleAdd} className="course-modal-form">
+              <label className="course-modal-field">
+                <span>Course name</span>
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Enter course name"
+                  autoFocus
+                />
+              </label>
+              <div className="course-modal-actions">
+                <button type="button" className="add-course-cancel" onClick={closeAddCourse}>
+                  Cancel
+                </button>
+                <button type="submit" className="add-course-button" disabled={loading}>
+                  {loading ? 'Adding...' : 'Add Course'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -10,6 +10,7 @@ headers = []
 publish = "D:\\PES\\Project\\idbmi\\dist"
 publishOrigin = "config"
 commandOrigin = "config"
+base = "D:\\PES\\Project\\idbmi"
 command = "npm run build"
 
 [build.environment]
