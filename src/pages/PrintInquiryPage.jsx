@@ -30,10 +30,10 @@ export default function PrintInquiryPage() {
             <h4 style={{ marginTop: 10 }}>MSME - Technology Center</h4>
           </div>
           <div className="document-details">
-            <p>Document ID: TNC/F/01</p>
+            <p>Document ID: TRG:FF:01</p>
             <p>Effective Date: 01/12/2016</p>
             <p>Revision Status: 00</p>
-          </div>
+          </div>S
         </div>
         <h3 style={{ textAlign: 'center', marginTop: -20 }}>INQUIRY FORM</h3>
         <hr />
